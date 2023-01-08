@@ -1,0 +1,13 @@
+body {
+    padding: 10%;
+}
+
+.container {
+    display: grid;
+    justify-content: center;
+}
+
+input {
+    width: 100px;
+    height: 100px;
+}
