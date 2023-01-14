@@ -1,7 +1,7 @@
 //nodelist with buttons
 const btn = document.querySelectorAll('input'); 
 
-// Declaring variables to identify cells and generate computer's move
+// Declaring chars to identify cells
 let chars = ["a", "b", "c"];
 
 //arrays for each row of the grid
@@ -23,12 +23,16 @@ btn.forEach((select) => {
 
 function generateComputerMove() {
 
-    let randomNum = Math.floor(Math.random() * 3) + 1;
-    let randomChar = chars[(Math.floor(Math.random() * 3))];
+    // Declaring random numbers for computer gen
+    let randomNum = Math.floor(Math.random() * 3) + 1; //Generates numbers 1 to 3
+    let randomChar = chars[(Math.floor(Math.random() * 3))]; //Generates random letter from chars array
 
+    // Generates random computer answer - e.g. a3
     let tile = randomChar + randomNum;
 
     console.log(tile);
+
+    //Conditions for computer's move
 
     if (tile == "a1" && document.getElementById("a1").value == " ") {
         document.getElementById("a1").value = "O";
