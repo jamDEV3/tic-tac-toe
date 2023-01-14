@@ -3,11 +3,6 @@ const btn = document.querySelectorAll('input');
 
 // Declaring variables to identify cells and generate computer's move
 let chars = ["a", "b", "c"];
-let randomNum = Math.floor(Math.random() * 3) + 1;
-let randomChar = chars[(Math.floor(Math.random() * 3))];
-let tile = randomChar + randomNum;
-
-console.log(tile);
 
 //arrays for each row of the grid
 let gridRow1 = [a1, b1, c1];
@@ -28,39 +23,46 @@ btn.forEach((select) => {
 
 function generateComputerMove() {
 
-    if (tile = "a1" && document.getElementById("a1").value == " ") {
+    let randomNum = Math.floor(Math.random() * 3) + 1;
+    let randomChar = chars[(Math.floor(Math.random() * 3))];
+
+    let tile = randomChar + randomNum;
+
+    console.log(tile);
+
+    if (tile == "a1" && document.getElementById("a1").value == " ") {
         document.getElementById("a1").value = "O";
     }
 
-    else if (tile = "a2" && document.getElementById("a2").value == " ") {
+    else if (tile == "a2" && document.getElementById("a2").value == " ") {
         document.getElementById("a2").value = "O";
     }
     
-    else if (tile = "a3" && document.getElementById("a3").value == " ") {
+    else if (tile == "a3" && document.getElementById("a3").value == " ") {
         document.getElementById("a3").value = "O";
     }
     
-    else if (tile = "b1" && document.getElementById("b1").value == " ") {
+    else if (tile == "b1" && document.getElementById("b1").value == " ") {
         document.getElementById("b1").value = "O";
     }
 
-    else if (tile = "b2" && document.getElementById("b2").value == " ") {
+    else if (tile == "b2" && document.getElementById("b2").value == " ") {
         document.getElementById("b2").value = "O";
     }
 
-    else if (tile = "b3" && document.getElementById("b3").value == " ") {
+    else if (tile == "b3" && document.getElementById("b3").value == " ") {
         document.getElementById("b3").value = "O";
     }
 
-    else if (tile = "c1" && document.getElementById("c1").value == " ") {
+    else if (tile == "c1" && document.getElementById("c1").value == " ") {
         document.getElementById("c1").value = "O";
     }
 
-    else if (tile = "c2" && document.getElementById("c2").value == " ") {
+    else if (tile == "c2" && document.getElementById("c2").value == " ") {
         document.getElementById("c2").value = "O";
     }
 
-    else if (tile = "c3" && document.getElementById("c3").value == " ") {
+    else if (tile == "c3" && document.getElementById("c3").value == " ") {
         document.getElementById("c3").value = "O";
     }
 
