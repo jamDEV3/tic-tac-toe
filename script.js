@@ -20,7 +20,8 @@ btn.forEach((select) => {
 
 //function to let the computer pick a move from the array
 function generateComputerMove(array) {
-   let moveIndex = Math.floor(Math.random() * array.length-1);
+   let moveIndex = Math.floor(Math.random() * array.length);
+   console.log(moveIndex);
    let moveId = array[moveIndex];
    console.log(moveId);
    document.getElementById(moveId).value = "O";
