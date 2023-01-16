@@ -4,6 +4,7 @@ const btn = document.querySelectorAll('input');
 // list of moves available (free tiles)
 let availableMoves = ['a1', 'b1', 'c1', 'a2', 'b2', 'c2', 'a3', 'b3', 'c3'];
 
+// Declares 
 let a1 = document.getElementById("a1");
 let a2 = document.getElementById("a2");
 let a3 = document.getElementById("a3");
@@ -59,42 +60,42 @@ function stripMove(array, move) {
 function rowComplete() {
 
     //Top row complete
-    if ((a1.value && b1.value && c1.value) == "X") {
+    if ((a1.value == 'X') && (b1.value == 'X') && (c1.value == 'X')) {
         console.log("Top row complete!");
     }
 
     //Middle row complete
-    else if ((a2.value && b2.value && c2.value) == "X") {
+    else if ((a2.value == 'X') && (b2.value == 'X') && (c2.value == 'X')) {
         console.log("Middle row complete!");
     }
 
     //Bottom row complete
-    else if ((a3.value && b3.value && c3.value) == "X") {
+    else if ((a3.value == 'X') && (b3.value == 'X') && (c3.value == 'X')) {
         console.log("Bottom row complete!");
     }
 
     //First column complete
-    else if ((a1.value && a2.value && a3.value) == "X") {
+    else if ((a1.value == 'X') && (a2.value == 'X') && (a3.value == 'X')) {
         console.log("First column complete!");
     }
 
     //Second column complete
-    else if ((b1.value && b2.value && b3.value) == "X") {
+    else if ((b1.value == 'X') && (b2.value == 'X') && (b3.value == 'X')) {
         console.log("Second column complete!");
     }
     
     //Third column complete
-    else if ((c1.value && c2.value && c3.value) == "X") {
+    else if ((c1.value == 'X') && (c2.value == 'X') && (c3.value == 'X')) {
         console.log("Third column complete!");
     }
     
     //Diagonal top-left to bottom-right complete
-    else if ((a1.value && b2.value && c3.value) == "X") {
+    else if ((a1.value == 'X') && (b2.value == 'X') && (c3.value == 'X')) {
         console.log("Top-left to bottom-right complete!");
     }
     
     //Diagonal bottom-left to top-right complete
-    else if ((a3.value && b2.value && c1.value) == "X") {
+    else if ((c1.value == 'X') && (b2.value == 'X') && (a3.value == 'X')) {
         console.log("Bottom-left to top-right complete!");
     }
 
