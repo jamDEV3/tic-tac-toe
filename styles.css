@@ -1,13 +1,43 @@
 body {
     padding: 10%;
+    background: beige;
 }
 
 .container {
     display: grid;
     justify-content: center;
+
+    /* Fix for button spacing */
+    font-size: 0%;
 }
 
 input {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
+    background-color: rgb(243, 237, 182);
+    border: 3px solid rgb(231, 208, 131);
+}
+
+.cross {
+    background-image: url("images/cross.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.circle {
+    background-image: url("images/circle.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.win {
+    background-color: rgb(0, 255, 0);
+    border: 3px solid rgb(0, 255, 0);
+}
+
+.lose {
+    background-color: rgb(255, 0, 0);
+    border: 3px solid rgb(255, 0, 0);
 }
