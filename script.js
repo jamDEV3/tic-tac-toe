@@ -1,7 +1,7 @@
 //nodelist with buttons
 const btn = document.querySelectorAll('input'); 
 
-// list of moves available (free tiles)
+// List of moves available (free tiles)
 let availableMoves = ['a1', 'b1', 'c1', 'a2', 'b2', 'c2', 'a3', 'b3', 'c3'];
 
 // Declares individual buttons on board
@@ -15,6 +15,9 @@ let c1 = document.getElementById("c1");
 let c2 = document.getElementById("c2");
 let c3 = document.getElementById("c3");
 
+// Assign paragraph element variable for status of the game 
+let p = document.getElementById("status");
+
 //Listener for all buttons
 btn.forEach((select) => {
     select.addEventListener('click', (e) => {
@@ -25,20 +28,17 @@ btn.forEach((select) => {
         // Assigns class to player's move
         cross = e.target.classList;
         cross.add("cross");
-        
-        //Debugging
-        console.log('--Player--')
-        console.log(playerOneInput);
 
-        rowWin();
+        playerDraw();
+        playerWin();
         generateComputerMove(availableMoves);
-        rowLose();
+        playerLose();
 
         }
     })
 });
 
-//function to let the computer pick a move from the array
+//Function to let the computer pick a move from the array
 function generateComputerMove(array) {
     let moveIndex = Math.floor(Math.random() * array.length);
     let moveId = array[moveIndex];
@@ -48,15 +48,9 @@ function generateComputerMove(array) {
     //Assigns class to computer's move
     circle = movePlay.classList;
     circle.add("circle");
-
-    //Debugging
-    console.log(moveIndex);
-    console.log('--Computer--')
-    console.log(moveId);
-    console.log(availableMoves);
 }
 
-//function to remove the used slots from the available moves array
+//Function to remove the used slots from the available moves array
 function stripMove(array, move) {
     let newAvailable = [];
     for (i = 0; i < array.length; i++) {
@@ -71,7 +65,7 @@ function stripMove(array, move) {
 }
 
 //function for establishing 3-in-a-row
-function rowWin() {
+function playerWin() {
 
     //Top row complete
     if ((a1.className == 'cross') && (b1.className == 'cross') && (c1.className == 'cross')) {
@@ -79,6 +73,9 @@ function rowWin() {
         a1.classList.add("win");
         b1.classList.add("win");
         c1.classList.add("win");
+        p.innerHTML = "You win!";
+        availableMoves = [];
+
     }
 
     //Middle row complete
@@ -87,6 +84,8 @@ function rowWin() {
         a2.classList.add("win");
         b2.classList.add("win");
         c2.classList.add("win");
+        p.innerHTML = "You win!";
+        availableMoves = [];
     }
 
     //Bottom row complete
@@ -95,6 +94,8 @@ function rowWin() {
         a3.classList.add("win");
         b3.classList.add("win");
         c3.classList.add("win");
+        p.innerHTML = "You win!";
+        availableMoves = [];
     }
 
     //First column complete
@@ -103,6 +104,8 @@ function rowWin() {
         a1.classList.add("win");
         a2.classList.add("win");
         a3.classList.add("win");
+        p.innerHTML = "You win!";
+        availableMoves = [];
     }
 
     //Second column complete
@@ -111,6 +114,8 @@ function rowWin() {
         b1.classList.add("win");
         b2.classList.add("win");
         b3.classList.add("win");
+        p.innerHTML = "You win!";
+        availableMoves = [];
     }
     
     //Third column complete
@@ -119,6 +124,8 @@ function rowWin() {
         c1.classList.add("win");
         c2.classList.add("win");
         c3.classList.add("win");
+        p.innerHTML = "You win!";
+        availableMoves = [];
     }
     
     //Diagonal top-left to bottom-right complete
@@ -127,6 +134,8 @@ function rowWin() {
         a1.classList.add("win");
         b2.classList.add("win");
         c3.classList.add("win");
+        p.innerHTML = "You win!";
+        availableMoves = [];
     }
     
     //Diagonal bottom-left to top-right complete
@@ -135,19 +144,23 @@ function rowWin() {
         c1.classList.add("win");
         b2.classList.add("win");
         a3.classList.add("win");
+        p.innerHTML = "You win!";
+        availableMoves = [];
     }
 
 }
 
 //function for establishing 3-in-a-row
-function rowLose() {
+function playerLose() {
 
     //Top row complete
-    if ((a1.className == 'circle') && (b1.className == 'circle') &&win (c1.className == 'circle')) {
+    if ((a1.className == 'circle') && (b1.className == 'circle') && (c1.className == 'circle')) {
 
         a1.classList.add("lose");
         b1.classList.add("lose");
         c1.classList.add("lose");
+        p.innerHTML = "You lose...";
+        availableMoves = [];
     }
 
     //Middle row complete
@@ -156,6 +169,8 @@ function rowLose() {
         a2.classList.add("lose");
         b2.classList.add("lose");
         c2.classList.add("lose");
+        p.innerHTML = "You lose...";
+        availableMoves = [];
     }
 
     //Bottom row complete
@@ -164,6 +179,8 @@ function rowLose() {
         a3.classList.add("lose");
         b3.classList.add("lose");
         c3.classList.add("lose");
+        p.innerHTML = "You lose...";
+        availableMoves = [];
     }
 
     //First column complete
@@ -172,6 +189,8 @@ function rowLose() {
         a1.classList.add("lose");
         a2.classList.add("lose");
         a3.classList.add("lose");
+        p.innerHTML = "You lose...";
+        availableMoves = [];
     }
 
     //Second column complete
@@ -180,6 +199,8 @@ function rowLose() {
         b1.classList.add("lose");
         b2.classList.add("lose");
         b3.classList.add("lose");
+        p.innerHTML = "You lose...";
+        availableMoves = [];
     }
     
     //Third column complete
@@ -188,6 +209,8 @@ function rowLose() {
         c1.classList.add("lose");
         c2.classList.add("lose");
         c3.classList.add("lose");
+        p.innerHTML = "You lose...";
+        availableMoves = [];
     }
     
     //Diagonal top-left to bottom-right complete
@@ -196,6 +219,8 @@ function rowLose() {
         a1.classList.add("lose");
         b2.classList.add("lose");
         c3.classList.add("lose");
+        p.innerHTML = "You lose...";
+        availableMoves = [];
     }
     
     //Diagonal bottom-left to top-right complete
@@ -204,6 +229,13 @@ function rowLose() {
         c1.classList.add("lose");
         b2.classList.add("lose");
         a3.classList.add("lose");
+        p.innerHTML = "You lose...";
+        availableMoves = [];
     }
+}
 
+function playerDraw() {
+    if (availableMoves.length == 0) {
+        p.innerHTML = "DRAW!";
+    }
 }
