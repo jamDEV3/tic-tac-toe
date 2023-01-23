@@ -1,6 +1,9 @@
 //nodelist with buttons
 const btn = document.querySelectorAll('input'); 
 
+//Variable to check for hard mode variable
+let isHard = false; 
+
 // List of moves available (free tiles)
 let availableMoves = ['a1', 'b1', 'c1', 'a2', 'b2', 'c2', 'a3', 'b3', 'c3'];
 
@@ -31,10 +34,10 @@ btn.forEach((select) => {
 
         playerDraw();
         playerWin();
-        generateComputerMove(availableMoves);
+        generateComputerMove(availableMoves);       
         playerLose();
-
-        }
+        }    
+        
     })
 });
 
@@ -44,11 +47,18 @@ function generateComputerMove(array) {
     let moveId = array[moveIndex];
     let movePlay = document.getElementById(moveId);
     availableMoves = stripMove(array, moveId);
-
     //Assigns class to computer's move
     circle = movePlay.classList;
     circle.add("circle");
 }
+
+function generateHardmove(array) {
+    if (array.inlcudes('b2')) {
+        document.getElementById('b2').classList.add("circle");
+        availableMoves = stripMove(array, 'b2');
+    }
+    
+} 
 
 //Function to remove the used slots from the available moves array
 function stripMove(array, move) {
@@ -75,7 +85,6 @@ function playerWin() {
         c1.classList.add("win");
         p.innerHTML = "You win!";
         availableMoves = [];
-
     }
 
     //Middle row complete
@@ -238,4 +247,9 @@ function playerDraw() {
     if (availableMoves.length == 0) {
         p.innerHTML = "DRAW!";
     }
+}
+
+function selectHardmode(isHard) {
+    isHard = true;    
+    console.log(isHard);
 }

@@ -7,7 +7,6 @@ body {
 .container {
     display: grid;
     justify-content: center;
-
     /* Fix for button spacing */
     font-size: 0%;
 }
@@ -47,7 +46,7 @@ input, button {
 button {
     height: 100px;
     width: 600px;
-    margin: 80px;
+    margin: 10px;
     font-size: 28pt;
     color: rgb(220, 203, 155) ;
 }
@@ -56,8 +55,13 @@ button {
     height: 100px;
 }
 
+/* not working :( */
+#hard:hover {
+    color:rgb(255, 0, 0)!important;
+}
+
 input:hover, button:hover {
-    background-color: rgb(250, 245, 230);
+    background-color: rgb(250, 245, 230);    
 }
 
 .win {
@@ -77,3 +81,4 @@ input:hover, button:hover {
 .lose:hover {
     background-color: rgb(224, 0, 0);
 }
+
