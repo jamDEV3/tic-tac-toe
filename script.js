@@ -7,6 +7,9 @@ let isHard = false;
 // List of moves available (free tiles)
 let availableMoves = ['a1', 'b1', 'c1', 'a2', 'b2', 'c2', 'a3', 'b3', 'c3'];
 
+//variable to check the turn number
+let turnNumber = 0
+
 // Declares individual buttons on board
 let a1 = document.getElementById("a1");
 let a2 = document.getElementById("a2");
@@ -24,16 +27,15 @@ let p = document.getElementById("status");
 //Listener for all buttons
 btn.forEach((select) => {
     select.addEventListener('click', (e) => {
-        if (availableMoves.includes(e.target.id)) {
-        playerOneInput = e.target.id;
-        availableMoves = stripMove(availableMoves, e.target.id);      
-        
+        if (availableMoves.includes(e.target.id)) {        
+        availableMoves = stripMove(availableMoves, e.target.id);       
         // Assigns class to player's move
         cross = e.target.classList;
         cross.add("cross");
-
+        turnNumber =+ 1;
         playerDraw();
         playerWin();
+        
         generateComputerMove(availableMoves);       
         playerLose();
         }    
@@ -50,16 +52,36 @@ function generateComputerMove(array) {
     //Assigns class to computer's move
     circle = movePlay.classList;
     circle.add("circle");
+    turnNumber =+ 1;
 }
 
 function generateHardmove(array) {
+    let corners = ['a1', 'a3', 'c1', 'c3'];
+    let sides = ['b1', 'b3', 'a2', 'c2'];
     if (array.inlcudes('b2')) {
         document.getElementById('b2').classList.add("circle");
         availableMoves = stripMove(array, 'b2');
+        turnNumber =+ 1;
     }
-    
-} 
 
+    else if (array.includes(corners)) {
+        generateComputerMove(corners);
+    }
+
+    else {
+        if (corners.includes(e.target.id)) {
+                for (let i = 0; i < corners.length(); i++) {
+                    if (e.target.id == corners[i]) {
+                        
+                    }
+                }
+                    
+                }
+            }       
+        /* let playerMoveColumn = e.target.id.charAt(0);
+        let playerMoveRow = e.target.id.charAt(1); */
+    }    
+ 
 //Function to remove the used slots from the available moves array
 function stripMove(array, move) {
     let newAvailable = [];
