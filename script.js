@@ -72,7 +72,20 @@ function generateHardmove(array) {
         if (corners.includes(e.target.id)) {
                 for (let i = 0; i < corners.length(); i++) {
                     if (e.target.id == corners[i]) {
-                        
+                        switch (i) {
+                            case 0:
+                                generateComputerMove(availableMoves, 'c3');
+                                break;
+                            case 1:
+                                generateComputerMove(availableMoves, 'c1');
+                                break;
+                            case 2:
+                                generateComputerMove(availableMoves, 'a3');
+                                break;
+                            case 3:
+                                generateComputerMove(availableMoves, 'a1');
+                                break;
+                        }
                     }
                 }
                     
