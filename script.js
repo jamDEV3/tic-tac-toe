@@ -27,16 +27,18 @@ let p = document.getElementById("status");
 //Listener for all buttons
 btn.forEach((select) => {
     select.addEventListener('click', (e) => {
+        let CurrentPlayerMove = String(e.target.id);
+        console.log(CurrentPlayerMove);
         if (availableMoves.includes(e.target.id)) {        
-        availableMoves = stripMove(availableMoves, e.target.id);       
+        availableMoves = stripMove(availableMoves, CurrentPlayerMove);
+        console.log(availableMoves);    
         // Assigns class to player's move
         cross = e.target.classList;
         cross.add("cross");
         turnNumber =+ 1;
         playerDraw();
-        playerWin();
-        
-        generateComputerMove(availableMoves);       
+        playerWin();        
+        generateHardMove(availableMoves, CurrentPlayerMove);       
         playerLose();
         }    
         
@@ -52,45 +54,62 @@ function generateComputerMove(array) {
     //Assigns class to computer's move
     circle = movePlay.classList;
     circle.add("circle");
-    turnNumber =+ 1;
+    ;
 }
 
-function generateHardmove(array) {
+let checkSubset = (parentArray, subsetArray) => {
+    return subsetArray.every((el) => {
+        return parentArray.includes(el)
+    })
+}
+
+function generateHardMove(array, move) {
     let corners = ['a1', 'a3', 'c1', 'c3'];
-    let sides = ['b1', 'b3', 'a2', 'c2'];
-    if (array.inlcudes('b2')) {
+    /* let sides = ['b1', 'b3', 'a2', 'c2']; */
+
+    if (array.includes('b2')) {
+        console.log('first if');
         document.getElementById('b2').classList.add("circle");
         availableMoves = stripMove(array, 'b2');
         turnNumber =+ 1;
     }
 
-    else if (array.includes(corners)) {
+    else if (checkSubset(array, corners)) {
+        console.log('second if')
         generateComputerMove(corners);
     }
 
     else {
-        if (corners.includes(e.target.id)) {
-                for (let i = 0; i < corners.length(); i++) {
-                    if (e.target.id == corners[i]) {
+        console.log('third if')
+        if (corners.includes(move)) {
+                for (let i = 0; i < corners.length; i++) {
+                    if (move == corners[i]) {
+                      
                         switch (i) {
                             case 0:
-                                generateComputerMove(availableMoves, 'c3');
+                                document.getElementById('c3').classList.add("circle");
+                                availableMoves = stripMove(array, 'c3');
                                 break;
                             case 1:
-                                generateComputerMove(availableMoves, 'c1');
+                                document.getElementById('c1').classList.add("circle");
+                                availableMoves = stripMove(array, 'c1');
                                 break;
                             case 2:
-                                generateComputerMove(availableMoves, 'a3');
+                                document.getElementById('a3').classList.add("circle");
+                                availableMoves = stripMove(array, 'a3');
                                 break;
                             case 3:
-                                generateComputerMove(availableMoves, 'a1');
+                                document.getElementById('a1').classList.add("circle");
+                                availableMoves = stripMove(array, 'b2');
                                 break;
-                        }
+                        }   
+                                          
                     }
+
                 }
                     
-                }
-            }       
+        }
+    }      
         /* let playerMoveColumn = e.target.id.charAt(0);
         let playerMoveRow = e.target.id.charAt(1); */
     }    
