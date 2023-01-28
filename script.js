@@ -7,8 +7,11 @@ let isHard = false;
 // List of moves available (free tiles)
 let availableMoves = ['a1', 'b1', 'c1', 'a2', 'b2', 'c2', 'a3', 'b3', 'c3'];
 
-//variable to check the turn number
-let turnNumber = 0
+// Array to store the moves picked by the player
+let playerMoves = [];
+
+// Array to store moves picked by the computer
+let computerMoves = [];
 
 // Declares individual buttons on board
 let a1 = document.getElementById("a1");
@@ -31,54 +34,63 @@ btn.forEach((select) => {
         console.log(CurrentPlayerMove);
         if (availableMoves.includes(e.target.id)) {        
         availableMoves = stripMove(availableMoves, CurrentPlayerMove);
+        playerMoves = playerMoves.push(CurrentPlayerMove);
         console.log(availableMoves);    
         // Assigns class to player's move
         cross = e.target.classList;
         cross.add("cross");
-        turnNumber =+ 1;
         playerDraw();
         playerWin();        
-        generateHardMove(availableMoves, CurrentPlayerMove);       
+        generateComputerMove(availableMoves);
         playerLose();
-        }    
+        }   
         
     })
 });
 
-//Function to let the computer pick a move from the array
+// Function to let the computer pick a move from the array
 function generateComputerMove(array) {
     let moveIndex = Math.floor(Math.random() * array.length);
     let moveId = array[moveIndex];
-    let movePlay = document.getElementById(moveId);
+    let movePlay = document.getElementById(moveId);    
     availableMoves = stripMove(array, moveId);
-    //Assigns class to computer's move
+    computerMoves = computerMoves.push(moveId);
+
+    // Assigns class to computer's move
     circle = movePlay.classList;
     circle.add("circle");
     ;
 }
 
+// Function to check is array is a subset of another array 
 let checkSubset = (parentArray, subsetArray) => {
     return subsetArray.every((el) => {
         return parentArray.includes(el)
     })
 }
 
+// Function to generate a best possible computer move
 function generateHardMove(array, move) {
+    // Array with corners ids 
     let corners = ['a1', 'a3', 'c1', 'c3'];
-    /* let sides = ['b1', 'b3', 'a2', 'c2']; */
+    // Array with sides ids
+    let sides = ['b1', 'b3', 'a2', 'c2'];
 
+    // Checks if the center is available
     if (array.includes('b2')) {
         console.log('first if');
         document.getElementById('b2').classList.add("circle");
         availableMoves = stripMove(array, 'b2');
-        turnNumber =+ 1;
+        
     }
 
+    // Checks if all the corners are available
     else if (checkSubset(array, corners)) {
         console.log('second if')
         generateComputerMove(corners);
     }
 
+    // Checks if last player move is a corner
     else {
         console.log('third if')
         if (corners.includes(move)) {
