@@ -6,7 +6,10 @@ let isHard = false;
 
 // List of moves available (free tiles)
 let availableMoves = ['a1', 'b1', 'c1', 'a2', 'b2', 'c2', 'a3', 'b3', 'c3'];
-
+// Array with corners ids 
+let corners = ['a1', 'a3', 'c1', 'c3'];
+// Array with sides ids
+let sides = ['b1', 'b3', 'a2', 'c2'];
 // Array to store the moves picked by the player
 let playerMoves = [];
 
@@ -34,7 +37,7 @@ btn.forEach((select) => {
         console.log(CurrentPlayerMove);
         if (availableMoves.includes(e.target.id)) {        
         availableMoves = stripMove(availableMoves, CurrentPlayerMove);
-        playerMoves = playerMoves.push(CurrentPlayerMove);
+        playerMoves.push(CurrentPlayerMove);
         console.log(availableMoves);    
         // Assigns class to player's move
         cross = e.target.classList;
@@ -54,8 +57,7 @@ function generateComputerMove(array) {
     let moveId = array[moveIndex];
     let movePlay = document.getElementById(moveId);    
     availableMoves = stripMove(array, moveId);
-    computerMoves = computerMoves.push(moveId);
-
+    computerMoves.push(moveId);
     // Assigns class to computer's move
     circle = movePlay.classList;
     circle.add("circle");
@@ -71,10 +73,7 @@ let checkSubset = (parentArray, subsetArray) => {
 
 // Function to generate a best possible computer move
 function generateHardMove(array, move) {
-    // Array with corners ids 
-    let corners = ['a1', 'a3', 'c1', 'c3'];
-    // Array with sides ids
-    let sides = ['b1', 'b3', 'a2', 'c2'];
+
 
     // Checks if the center is available
     if (array.includes('b2')) {
@@ -95,7 +94,7 @@ function generateHardMove(array, move) {
         console.log('third if')
         if (corners.includes(move)) {
                 for (let i = 0; i < corners.length; i++) {
-                    if (move == corners[i]) {
+                    if (move == corners[i] && b2.className == 'cross') {
                       
                         switch (i) {
                             case 0:
@@ -117,13 +116,15 @@ function generateHardMove(array, move) {
                         }   
                                           
                     }
-
-                }
                     
+
+                }                  
+        }
+        else {
+            generateComputerMove(sides);
         }
     }      
-        /* let playerMoveColumn = e.target.id.charAt(0);
-        let playerMoveRow = e.target.id.charAt(1); */
+        
     }    
  
 //Function to remove the used slots from the available moves array

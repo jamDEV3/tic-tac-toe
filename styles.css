@@ -1,5 +1,5 @@
 body {
-    background: beige;
+    background: rgb(177, 177, 8);
     text-align: center;
     font-family: 'Didact Gothic', sans-serif;
 }
@@ -23,7 +23,7 @@ p {
 input, button {
     width: 200px;
     height: 200px;
-    background-color: rgb(253, 248, 190);
+    background-color: rgb(112, 104, 9);
     border: 3px solid rgb(235, 223, 185);
 }
 
@@ -32,7 +32,7 @@ input, button {
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100%;
-    background-color: rgb(253, 248, 190);
+    background-color: rgb(133, 133, 5);
 }
 
 .circle {
@@ -40,7 +40,7 @@ input, button {
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100%;
-    background-color: rgb(253, 248, 190);
+    background-color: rgb(83, 77, 6);
 }
 
 button {
@@ -61,7 +61,7 @@ button {
 }
 
 input:hover, button:hover {
-    background-color: rgb(250, 245, 230);    
+    background-color: rgb(156, 138, 83);    
 }
 
 .win {
@@ -82,3 +82,10 @@ input:hover, button:hover {
     background-color: rgb(224, 0, 0);
 }
 
+@media (min-width: 575px) {
+    html {
+      width: 550px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
