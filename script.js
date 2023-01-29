@@ -1,20 +1,20 @@
 //nodelist with buttons
 const btn = document.querySelectorAll('input'); 
 
-//Variable to check for hard mode variable
-let isHard = false; 
-
 // List of moves available (free tiles)
 let availableMoves = ['a1', 'b1', 'c1', 'a2', 'b2', 'c2', 'a3', 'b3', 'c3'];
+
 // Array with corners ids 
 let corners = ['a1', 'a3', 'c1', 'c3'];
+
 // Array with sides ids
 let sides = ['b1', 'b3', 'a2', 'c2'];
+
 // Array to store the moves picked by the player
 let playerMoves = [];
 
-// Array to store moves picked by the computer
-let computerMoves = [];
+// Variable to keep track of the turn
+let turnNumber = 0;
 
 // Declares individual buttons on board
 let a1 = document.getElementById("a1");
@@ -71,61 +71,75 @@ let checkSubset = (parentArray, subsetArray) => {
     })
 }
 
+// Function to actualize comp move
+function cpMove(id) {
+    id.classList.add('circle');
+    avMoves = stripMove(avMoves, id);
+    computerMoves.push(id);
+    turnNumber++;
+}
+
 // Function to generate a best possible computer move
-function generateHardMove(array, move) {
+function generateHardMove(avMoves, playerMoves, turn) {
+    let moveColumn;
+    let moveRow;
+    switch (turn) {
+        case 1:
+            if (avMoves.includes('b2')) {
+                cpMove('b2');
+            }            
+            else {
+                generateComputerMove(corners);
+            }
+            break;
 
+        case 3:            
+            moveColumn = playerMoves[1].charAt(0);
+            moveRow = playerMoves[1].charAt(1);
+            if (playerMoves.includes('b2')) {                
+                if (moveColumn == "a") {
+                    if (moveRow == 1) {
+                        cpMove('c3');
+                    }
+                    else if (moveRow == 2) {
+                        cpMove('c2');
+                    }
+                    else {
+                        cpMove('c1');
+                    }                
+                }
+                else if (moveColumn == 'b') {
+                    if(moveRow == 1) {
+                        cpMove('b3');
+                    }
+                    else {
+                        cpMove('b1');
+                    }                
+                }
+                else {
+                    if (moveRow == 1) {
+                        cpMove('a3');
+                    }
+                    else if (moveRow == 2) {
+                        cpMove('a2');
+                    }
+                    else {
+                        cpMove('a1');
+                    }                
 
-    // Checks if the center is available
-    if (array.includes('b2')) {
-        console.log('first if');
-        document.getElementById('b2').classList.add("circle");
-        availableMoves = stripMove(array, 'b2');
-        
-    }
-
-    // Checks if all the corners are available
-    else if (checkSubset(array, corners)) {
-        console.log('second if')
-        generateComputerMove(corners);
-    }
-
-    // Checks if last player move is a corner
-    else {
-        console.log('third if')
-        if (corners.includes(move)) {
-                for (let i = 0; i < corners.length; i++) {
-                    if (move == corners[i] && b2.className == 'cross') {
-                      
-                        switch (i) {
-                            case 0:
-                                document.getElementById('c3').classList.add("circle");
-                                availableMoves = stripMove(array, 'c3');
-                                break;
-                            case 1:
-                                document.getElementById('c1').classList.add("circle");
-                                availableMoves = stripMove(array, 'c1');
-                                break;
-                            case 2:
-                                document.getElementById('a3').classList.add("circle");
-                                availableMoves = stripMove(array, 'a3');
-                                break;
-                            case 3:
-                                document.getElementById('a1').classList.add("circle");
-                                availableMoves = stripMove(array, 'b2');
-                                break;
-                        }   
-                                          
+                }
+            }
+            else {
+                if (corners.includes(playerMoves[0])&& corners.includes(playerMoves[1]))
+                    if (playerMoves[0].charAt(0) == playerMoves[1].charAt(0)){
+                        cpMove(playerMoves[0].charAt(0)+'2');
                     }
                     
+            }
 
-                }                  
-        }
-        else {
-            generateComputerMove(sides);
-        }
-    }      
-        
-    }    
+    }
+}
+
  
 //Function to remove the used slots from the available moves array
 function stripMove(array, move) {
